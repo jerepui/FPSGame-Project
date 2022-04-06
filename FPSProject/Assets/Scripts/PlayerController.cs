@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     //This allows us to choose a camera in the editor to act as the player camera that is attached to the player object.
     [SerializeField] Transform playerCamera = null;
-
+    
     //mouseSensitivity affects the turn speed of the camera when the mouse is moved.
     [SerializeField] float mouseSensitivity = 3.0f;
 
@@ -115,4 +115,13 @@ public class PlayerController : MonoBehaviour
         //Makes the player object move by the vector3 values gradually
         controller.Move(velocity * Time.deltaTime);
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit) {
+        
+        if(hit.gameObject.tag == "Enemy") {
+
+            Destroy(hit.gameObject);
+        }
+    }
+
 }
